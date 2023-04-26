@@ -1,0 +1,82 @@
+{
+    "name": "nfq-react-grid-highlight",
+    "displayName": ".NFQ React Grid Highlight",
+    "description": "An extension that cooperates the language server of Styled components to provide intellisense and syntax highlighting for the @nfq/react-grid media and mediaBetween functions.",
+    "version": "0.0.1",
+    "publisher": "nfq",
+    "icon": "logo.png",
+    "license": "MIT",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/nfqde/nfq-react-grid-vscode.git"
+	},
+    "engines": {
+        "vscode": "^1.77.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "activationEvents": [
+        "onLanguage:typescriptreact",
+        "onLanguage:javascriptreact"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "grammars": [
+            {
+                "injectTo": [
+                    "source.js",
+                    "source.ts",
+                    "source.jsx",
+                    "source.js.jsx",
+                    "source.tsx"
+                ],
+                "scopeName": "styled.extended",
+                "path": "./syntaxes/nfq-react-grid-highlight.json",
+                "embeddedLanguages": {
+                    "source.css.scss": "css",
+                    "meta.embedded.line.ts": "typescript"
+                }
+            }
+        ],
+        "typescriptServerPlugins": [
+            {
+                "name": "@styled/typescript-styled-plugin",
+                "enableForWorkspaceTypeScriptVersions": true
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "extensionDependencies": [
+        "styled-components.vscode-styled-components"
+    ],
+    "devDependencies": {
+        "@types/vscode": "^1.77.0",
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "eslint": "^8.36.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.2.0",
+        "typescript": "^4.9.5",
+        "ts-loader": "^9.4.2",
+        "webpack": "^5.76.3",
+        "webpack-cli": "^5.0.1",
+        "@vscode/test-electron": "^2.3.0"
+    },
+    "dependencies": {
+        "@styled/typescript-styled-plugin": "^1.0.0"
+    }
+}

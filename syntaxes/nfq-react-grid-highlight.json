@@ -1,0 +1,45 @@
+{
+    "fileTypes": [
+        "js",
+        "jsx",
+        "ts",
+        "tsx"
+    ],
+    "injectionSelector": "L:source -comment -string",
+    "scopeName": "styled.extended",
+    "patterns": [
+        {
+            "contentName": "source.css.scss",
+            "begin": "((media|mediaBetween)(<.+>)?\\((.*?)\\)(`))",
+            "end": "`",
+            "beginCaptures": {
+                "2": {
+                    "name": "entity.name.function.tagged-template.js"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "source.ts#type-parameters"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "string.quoted"
+                },
+                "5": {
+                    "name": "punctuation.definition.string.template.begin.js string.template.js"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.template.end.js string.template.js"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.css.styled"
+                }
+            ]
+        }
+    ]
+}
